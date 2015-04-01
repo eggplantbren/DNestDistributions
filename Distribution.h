@@ -9,7 +9,7 @@ class Distribution
 	public:
 		virtual void fromPrior() = 0;
 		virtual double perturb() = 0;
-		virtual double logp() = 0;
+		virtual double logp() const = 0;
 
 };
 
