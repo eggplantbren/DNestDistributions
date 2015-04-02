@@ -42,6 +42,6 @@ double Uniform::logp() const
 	for(size_t i=0; i<x.size(); i++)
 		if(x[i] < a || x[i] > b)
 			return -1E250;
-	return -log(b - a);
+	return -x.size()*log(b - a);
 }
 
