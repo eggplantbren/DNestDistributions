@@ -1,6 +1,8 @@
 #include "Uniform.h"
 #include <cassert>
+#include <cmath>
 #include "RandomNumberGenerator.h"
+#include "Utils.h"
 
 using namespace std;
 using namespace DNest3;
@@ -22,10 +24,24 @@ void Uniform::fromPrior()
 
 double Uniform::perturb()
 {
-	assert(b > a);
+	int reps = (int)exp(log((double)x.size())*randomU());
+	int which;
 
-	double range = b - a;
+	for(int i=0; i<reps; i++)
+	{
+		which = randInt(x.size());
+		x[which] += (b - a)*randh();
+		wrap(x[which], a, b);
+	}
+
+	return 0.;
+}
+
+double Uniform::logp() const
+{
 	for(size_t i=0; i<x.size(); i++)
-		x[i] = a + range*randomU();
+		if(x[i] < a || x[i] > b)
+			return -1E250;
+	return -log(b - a);
 }
 
