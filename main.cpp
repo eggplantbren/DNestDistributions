@@ -12,7 +12,7 @@ int main()
 	Uniform u(0., 1.);
 	u.fromPrior();
 
-	cout<<u.get_value()<<endl;
+	cout<<u<<endl;
 
 	return 0;
 }
