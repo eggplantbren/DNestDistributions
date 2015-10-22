@@ -16,11 +16,10 @@ class Distribution
 		const Type& get_value() const
 		{ return value; }
 
-		virtual ~Distribution();
-		virtual void fromPrior();
-		virtual double perturb();
-		virtual double logp() const;
-
+		virtual ~Distribution() { }
+		virtual void fromPrior() { }
+		virtual double perturb() { return 0.; }
+		virtual double logp() const { return 0.; }
 };
 
 #endif
