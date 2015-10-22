@@ -1,24 +1,24 @@
-#ifndef _Distribution_
-#define _Distribution_
+#ifndef _Node_
+#define _Node_
 
 #include <ostream>
 
 template<class Type>
-class Distribution
+class Node
 {
 	protected:
 		Type value;
 
 	public:
 		// Constructors
-		Distribution() {}
-		Distribution(Type value): value(value) {}
+		Node() {}
+		Node(Type value): value(value) {}
 
 		// Getter
 		const Type& get_value() const
 		{ return value; }
 
-		virtual ~Distribution() { }
+		virtual ~Node() { }
 		virtual void fromPrior() { }
 		virtual double perturb() { return 0.; }
 		virtual double logp() const { return 0.; }
@@ -26,7 +26,7 @@ class Distribution
 };
 
 template<class Type>
-std::ostream& operator << (std::ostream& out, const Distribution<Type>& a)
+std::ostream& operator << (std::ostream& out, const Node<Type>& a)
 {
 	a.print(out);
 	return out;

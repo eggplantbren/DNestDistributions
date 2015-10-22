@@ -8,8 +8,8 @@ using namespace std;
 using namespace DNest3;
 
 Uniform::Uniform(double a, double b)
-:a(new Distribution(a))
-,b(new Distribution(b))
+:a(new Node(a))
+,b(new Node(b))
 {
 
 }
