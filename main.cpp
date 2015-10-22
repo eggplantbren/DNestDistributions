@@ -9,10 +9,13 @@ int main()
 {
 	RandomNumberGenerator::initialise_instance();
 
-	Uniform u(0., 1.);
-	u.fromPrior();
+	Uniform u1(0., 1.);
+	u1.fromPrior();
 
-	cout<<u<<endl;
+	Uniform u2(5., 10.);
+	u2.fromPrior();
+
+	cout<<u1<<' '<<u2<<endl;
 
 	return 0;
 }

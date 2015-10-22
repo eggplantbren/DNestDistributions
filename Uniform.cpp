@@ -8,28 +8,29 @@ using namespace std;
 using namespace DNest3;
 
 Uniform::Uniform(double a, double b)
-:a(new Node(a))
-,b(new Node(b))
 {
-
+	assert(b > a);
+	parents.push_back(shared_ptr< Node<double> >(new Node<double>(a)));
+	parents.push_back(shared_ptr< Node<double> >(new Node<double>(b)));
 }
 
 void Uniform::fromPrior()
 {
-	value = a->get_value() + (b->get_value() - a->get_value())*randomU();
+	value = parents[0]->get_value() +
+				(parents[1]->get_value() - parents[0]->get_value())*randomU();
 }
 
 double Uniform::perturb()
 {
-	value += (b->get_value() - a->get_value())*randh();
-	wrap(value, a->get_value(), b->get_value());
+	value += (parents[1]->get_value() - parents[0]->get_value())*randh();
+	wrap(value, parents[0]->get_value(), parents[1]->get_value());
 	return 0.;
 }
 
 double Uniform::logp() const
 {
-	if(value < a->get_value() || value > b->get_value())
+	if(value < parents[0]->get_value() || value > parents[1]->get_value())
 			return -1E250;
-	return -log(b->get_value() - a->get_value());
+	return -log(parents[1]->get_value() - parents[0]->get_value());
 }
 
