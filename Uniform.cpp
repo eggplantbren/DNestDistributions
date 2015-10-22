@@ -7,41 +7,29 @@
 using namespace std;
 using namespace DNest3;
 
-Uniform::Uniform(int size)
-:x(size)
+Uniform::Uniform(double a, double b)
+:a(new Distribution(a))
+,b(new Distribution(b))
 {
 
 }
 
 void Uniform::fromPrior()
 {
-	assert(b > a);
-
-	double range = b - a;
-	for(size_t i=0; i<x.size(); i++)
-		x[i] = a + range*randomU();
+	value = a->get_value() + (b->get_value() - a->get_value())*randomU();
 }
 
 double Uniform::perturb()
 {
-	int reps = (int)exp(log((double)x.size())*randomU());
-	int which;
-
-	for(int i=0; i<reps; i++)
-	{
-		which = randInt(x.size());
-		x[which] += (b - a)*randh();
-		wrap(x[which], a, b);
-	}
-
+	value += (b->get_value() - a->get_value())*randh();
+	wrap(value, a->get_value(), b->get_value());
 	return 0.;
 }
 
 double Uniform::logp() const
 {
-	for(size_t i=0; i<x.size(); i++)
-		if(x[i] < a || x[i] > b)
+	if(value < a->get_value() || value > b->get_value())
 			return -1E250;
-	return -x.size()*log(b - a);
+	return -log(b->get_value() - a->get_value());
 }
 

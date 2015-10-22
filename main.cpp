@@ -5,7 +5,7 @@ using namespace std;
 
 int main()
 {
-	Uniform u(10);
+	Uniform u(5., 10.);
 	u.fromPrior();
 
 	return 0;
