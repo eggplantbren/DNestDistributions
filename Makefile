@@ -1,4 +1,4 @@
-CFLAGS = -O0 -g -std=c++14 -Wall -Wextra -pedantic
+CFLAGS = -O0 -g -std=c++11 -Wall -Wextra -pedantic
 LIBS = -ldnest3 -lgsl -lgslcblas -lboost_thread -lboost_system
 
 default:

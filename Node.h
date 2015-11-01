@@ -12,18 +12,13 @@ class Node
 		// The value of this node (usually Type will be double)
 		Type value;
 
-		// Pointers to any parents and children
-		std::vector< std::shared_ptr<Node> > parents;
+		// Pointers to any children and children
 		std::vector< std::shared_ptr<Node> > children;
 
 	public:
 		// Constructors
 		Node() {}
 		Node(Type value): value(value) {}
-
-//		// When a node is made with this one as a parent, tell me!!
-//		void add_child(Node& node)
-//		{ children.push_back(std::shared_ptr<Node>(&node)); }
 
 		// Getter
 		const Type& get_value() const
