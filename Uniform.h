@@ -9,13 +9,12 @@ class Uniform:public Node<double>
 {
 	private:
 		// Limits
-		double a, b;
+		const Node<double>& a, b;
 
 	public:
-		Uniform(double a, double b);
+		Uniform(const Node<double>& a, const Node<double>& b);
 		~Uniform();
 
-		void set_parameters(double a, double b);
 		void fromPrior();
 		double perturb();
 		double logp() const;
