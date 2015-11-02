@@ -8,11 +8,12 @@
 class Uniform:public Node<double>
 {
 	private:
-		// Limits
-		const Node<double>& a, b;
+		// Aliases
+		Node* a;
+		Node* b;
 
 	public:
-		Uniform(const Node<double>& a, const Node<double>& b);
+		Uniform(Node* a, Node* b);
 		~Uniform();
 
 		void fromPrior();
